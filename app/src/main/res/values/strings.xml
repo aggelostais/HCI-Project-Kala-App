@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">KalaApp</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_social">Social</string>
+
+    <string name="AllTasks">All Tasks</string>
+    <string name="Categorized">Categorized</string>
+    <string name="Starred">Starred</string>
+    <string name="Overview">Overview</string>
+    <string name="Graphs">Graphs</string>
+    <string name="YourFriends">Your Friends</string>
+    <string name="Recommended">Recommended</string>
+
+</resources>

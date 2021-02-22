@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="ntua.hci.kalaapp.ui.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_categorizedFragment"
+            app:destination="@id/categorizedFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_starredFragment"
+            app:destination="@id/starredFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="ntua.hci.kalaapp.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_navigation_dashboard_to_graphsFragment"
+            app:destination="@id/graphsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_social"
+        android:name="ntua.hci.kalaapp.ui.social.SocialFragment"
+        android:label="@string/title_social"
+        tools:layout="@layout/fragment_social" >
+        <action
+            android:id="@+id/action_navigation_social_to_recommendedFragment"
+            app:destination="@id/recommendedFragment" />
+    </fragment>
+
+    <!--this is for home navigation-->
+    <fragment
+        android:id="@+id/categorizedFragment"
+        android:name="ntua.hci.kalaapp.ui.home.CategorizedFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home_categorized" >
+        <action
+            android:id="@+id/action_categorizedFragment_to_starredFragment"
+            app:destination="@id/starredFragment" />
+        <action
+            android:id="@+id/action_categorizedFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/starredFragment"
+        android:name="ntua.hci.kalaapp.ui.home.StarredFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home_starred" >
+        <action
+            android:id="@+id/action_starredFragment_to_categorizedFragment"
+            app:destination="@id/categorizedFragment" />
+        <action
+            android:id="@+id/action_starredFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/graphsFragment"
+        android:name="ntua.hci.kalaapp.ui.dashboard.GraphsFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard_graphs" >
+        <action
+            android:id="@+id/action_graphsFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
+    </fragment>
+    <fragment
+        android:id="@+id/recommendedFragment"
+        android:name="ntua.hci.kalaapp.ui.social.RecommendedFragment"
+        android:label="@string/title_social" >
+        <action
+            android:id="@+id/action_recommendedFragment_to_navigation_social"
+            app:destination="@id/navigation_social" />
+    </fragment>
+</navigation>
