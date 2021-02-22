@@ -14,6 +14,7 @@
         android:layout_marginEnd="5dp"
         android:text="@string/AllTasks"
         android:textAllCaps="false"
+        android:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintEnd_toStartOf="@+id/btnCategorized"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,6 +25,7 @@
         android:layout_height="wrap_content"
         android:text="@string/Categorized"
         android:textAllCaps="false"
+        android:backgroundTint="@android:color/holo_blue_light"
         app:layout_constraintEnd_toStartOf="@+id/btnStarred"
         app:layout_constraintStart_toEndOf="@+id/btnAllTasks"
         app:layout_constraintTop_toTopOf="parent" />
@@ -35,6 +37,7 @@
         android:layout_marginStart="5dp"
         android:text="@string/Starred"
         android:textAllCaps="false"
+        android:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCategorized"
         app:layout_constraintTop_toTopOf="parent" />

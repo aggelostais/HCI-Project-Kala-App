@@ -11,6 +11,7 @@
         android:layout_marginStart="50dp"
         android:text="@string/YourFriends"
         android:textAllCaps="false"
+        android:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -21,6 +22,7 @@
         android:layout_marginEnd="50dp"
         android:text="@string/Recommended"
         android:textAllCaps="false"
+        android:backgroundTint="@android:color/holo_blue_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnYourFriends"
         app:layout_constraintTop_toTopOf="parent" />
