@@ -13,4 +13,6 @@
     <string name="YourFriends">Φίλοι</string>
     <string name="Recommended">Προτεινόμενα</string>
 
+    <string name="btnAdd_text">Προσθήκη</string>
+
 </resources>
