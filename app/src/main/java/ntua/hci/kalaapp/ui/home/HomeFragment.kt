@@ -32,6 +32,8 @@ class HomeFragment : Fragment() {
             textView.text = it
         })
 
+        root.findViewById<TextView>(R.id.title_text).text = getString(R.string.title_home)
+
         categoryList.add("Κατηγορία A")
         categoryList.add("Κατηγορία B")
         return root

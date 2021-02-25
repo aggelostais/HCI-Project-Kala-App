@@ -4,7 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.dashboard.DashboardFragment">
+    tools:context=".ui.dashboard.DashboardFragment"
+    android:background="@color/cardview_dark_background">
+
+    <include
+        android:id="@+id/Top_bar"
+        layout="@layout/top_bar_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnOverview"
@@ -14,20 +21,21 @@
         android:text="@string/Overview"
         android:textAllCaps="false"
         android:backgroundTint="@android:color/holo_blue_light"
+        app:layout_constraintEnd_toStartOf="@+id/btnCategorized"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/Top_bar"  />
 
     <Button
         android:id="@+id/btnGraphs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="50dp"
+        android:backgroundTint="@color/cardview_dark_background"
         android:text="@string/Graphs"
         android:textAllCaps="false"
-        android:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnOverview"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/Top_bar" />
 
     <TextView
         android:id="@+id/text_dashboard"

@@ -5,42 +5,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.CategorizedFragment">
+    tools:context=".ui.home.CategorizedFragment"
+    android:background="@color/cardview_dark_background">
+
+    <include
+        android:id="@+id/Top_bar"
+        layout="@layout/top_bar_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnAllTasks"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="5dp"
+        android:backgroundTint="@color/cardview_dark_background"
         android:text="@string/AllTasks"
         android:textAllCaps="false"
-        android:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintEnd_toStartOf="@+id/btnCategorized"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/Top_bar" />
 
     <Button
         android:id="@+id/btnCategorized"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_blue_light"
         android:text="@string/Categorized"
         android:textAllCaps="false"
-        android:backgroundTint="@android:color/holo_blue_light"
         app:layout_constraintEnd_toStartOf="@+id/btnStarred"
         app:layout_constraintStart_toEndOf="@+id/btnAllTasks"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/Top_bar" />
 
     <Button
         android:id="@+id/btnStarred"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
+        android:backgroundTint="@color/cardview_dark_background"
         android:text="@string/Starred"
         android:textAllCaps="false"
-        android:backgroundTint="@color/cardview_dark_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnCategorized"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/Top_bar" />
 
     <TextView
         android:id="@+id/textView"

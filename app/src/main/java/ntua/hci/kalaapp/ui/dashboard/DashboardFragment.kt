@@ -28,6 +28,9 @@ class DashboardFragment : Fragment() {
         dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+        root.findViewById<TextView>(R.id.title_text).text = getString(R.string.title_dashboard)
+
         return root
     }
 
