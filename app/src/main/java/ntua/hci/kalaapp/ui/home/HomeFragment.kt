@@ -53,21 +53,25 @@ class HomeFragment : Fragment() {
         layoutList = requireView().findViewById(R.id.layout_list)
         buttonAdd = requireView().findViewById(R.id.btnAddTask)
 
-        buttonAdd.setOnClickListener{
-            var taskView = layoutInflater.inflate(R.layout.add_task_layout, null, false)
+//        buttonAdd.setOnClickListener{
+//            var taskView = layoutInflater.inflate(R.layout.add_task_layout, null, false)
+//
+//            var editTask = taskView.findViewById<EditText>(R.id.edit_task_name)
+//            var spinner = taskView.findViewById<AppCompatSpinner>(R.id.spinner)
+//            var imageClose = taskView.findViewById<ImageView>(R.id.image_remove)
+//
+//            var arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, categoryList)
+//            spinner.adapter = arrayAdapter
+//
+//            imageClose.setOnClickListener{
+//                layoutList.removeView(taskView)
+//            }
+//
+//            layoutList.addView(taskView)
+//        }
 
-            var editTask = taskView.findViewById<EditText>(R.id.edit_task_name)
-            var spinner = taskView.findViewById<AppCompatSpinner>(R.id.spinner)
-            var imageClose = taskView.findViewById<ImageView>(R.id.image_remove)
-
-            var arrayAdapter = ArrayAdapter<String>(requireContext(), android.R.layout.simple_spinner_item, categoryList)
-            spinner.adapter = arrayAdapter
-
-            imageClose.setOnClickListener{
-                layoutList.removeView(taskView)
-            }
-
-            layoutList.addView(taskView)
+        buttonAdd.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_newTaskFragment)
         }
     }
 }

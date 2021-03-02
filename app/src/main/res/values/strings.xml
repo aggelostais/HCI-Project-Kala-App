@@ -5,6 +5,8 @@
     <string name="title_notifications">Ειδοποιήσεις</string>
     <string name="title_social">Κοινωνικά Δίκτυα</string>
 
+    <string name="title_new_task">Δημιουργία</string>
+
     <string name="AllTasks">Εργασίες</string>
     <string name="Categorized">Κατηγορίες</string>
     <string name="Starred">Επιλεγμένα</string>

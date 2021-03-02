@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_navigation_home_to_starredFragment"
             app:destination="@id/starredFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_newTaskFragment"
+            app:destination="@id/newTaskFragment" />
     </fragment>
 
     <fragment
@@ -79,5 +82,13 @@
         <action
             android:id="@+id/action_recommendedFragment_to_navigation_social"
             app:destination="@id/navigation_social" />
+    </fragment>
+    <fragment
+        android:id="@+id/newTaskFragment"
+        android:name="ntua.hci.kalaapp.ui.home.NewTaskFragment"
+        android:label="NewTaskFragment" >
+        <action
+            android:id="@+id/action_newTaskFragment_to_navigation_home"
+            app:destination="@id/navigation_home" />
     </fragment>
 </navigation>
