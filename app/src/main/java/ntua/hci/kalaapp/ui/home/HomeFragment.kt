@@ -53,6 +53,21 @@ class HomeFragment : Fragment() {
         layoutList = requireView().findViewById(R.id.layout_list)
         buttonAdd = requireView().findViewById(R.id.btnAddTask)
 
+        var taskView = layoutInflater.inflate(R.layout.task_layout, null, false)
+
+        var task_rating = taskView.findViewById<RatingBar>(R.id.TaskRating)
+        task_rating.numStars = 5
+        task_rating.rating = 2.0F
+
+        var imageClose = taskView.findViewById<ImageView>(R.id.image_remove)
+
+        imageClose.setOnClickListener{
+            layoutList.removeView(taskView)
+        }
+
+        layoutList.addView(taskView)
+
+
 //        buttonAdd.setOnClickListener{
 //            var taskView = layoutInflater.inflate(R.layout.add_task_layout, null, false)
 //

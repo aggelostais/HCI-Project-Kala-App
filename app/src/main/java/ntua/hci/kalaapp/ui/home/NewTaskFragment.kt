@@ -4,6 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 import ntua.hci.kalaapp.R
 import java.util.*
 import kotlin.math.log
@@ -120,8 +123,25 @@ class NewTaskFragment : Fragment() {
             println(mMonth)
             println(mYear)
 
+            var date = "$mDate-$mMonth-$mYear"
+            var time = timeText.text.toString()
+
             println(mHour)
             println(mMinute)
+
+            var task = Task(name, category, date, time, rating)
+
+            var database = FirebaseDatabase.getInstance()
+            var myRef = database.getReference("Tasks")
+
+            myRef.get().addOnSuccessListener {
+                Log.i("firebase", "Got value ${it.value}")
+                Log.i("firebase", "Length = ${it.childrenCount}")
+            }.addOnFailureListener{
+                Log.e("firebase", "Error getting data", it)
+            }
+
+//            myRef.push().setValue(task)
         }
     }
 }
