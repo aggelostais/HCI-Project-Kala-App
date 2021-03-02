@@ -7,10 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.fragment.app.Fragment
@@ -35,6 +32,8 @@ class NewTaskFragment : Fragment() {
     private lateinit var name : String
     private lateinit var category: String
 
+    private lateinit var ratingBar: RatingBar
+
     private var categoryList = mutableListOf<String>()
 
     override fun onCreateView(
@@ -50,6 +49,8 @@ class NewTaskFragment : Fragment() {
 
         dateText = root.findViewById(R.id.date_picker)
         timeText = root.findViewById(R.id.time_picker)
+
+        ratingBar = root.findViewById(R.id.rating_bar)
 
         categoryList.add("Κατηγορία A")
         categoryList.add("Κατηγορία B")
@@ -108,8 +109,12 @@ class NewTaskFragment : Fragment() {
             name = nameText.text.toString()
             category = spinner.selectedItem.toString()
 
+            var rating  = ratingBar.rating
+
             println(name)
             println(category)
+
+            println("rating = $rating")
 
             println(mDate)
             println(mMonth)

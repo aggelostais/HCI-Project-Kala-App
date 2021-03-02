@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="25dp"
         android:text="Όνομα:"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -40,7 +40,7 @@
         android:id="@+id/textView_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:text="Κατηγορία:"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -70,7 +70,7 @@
         android:id="@+id/textView_due_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:text="Μέχρι:"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -93,7 +93,7 @@
         android:id="@+id/textView_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:text="Ώρα:"
         android:textColor="@color/white"
         android:textSize="20dp"
@@ -112,12 +112,35 @@
         app:layout_constraintStart_toStartOf="@+id/textView_time"
         app:layout_constraintTop_toBottomOf="@+id/textView_time" />
 
+    <TextView
+        android:id="@+id/textView_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Ταξινόμηση:"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/time_picker"
+        app:layout_constraintTop_toBottomOf="@+id/time_picker" />
+
+    <RatingBar
+        android:id="@+id/rating_bar"
+        android:layout_width="239dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="5dp"
+        android:stepSize="1"
+        android:progressTint="@android:color/holo_blue_light"
+        app:layout_constraintEnd_toEndOf="@+id/time_picker"
+        app:layout_constraintHorizontal_bias="0.375"
+        app:layout_constraintStart_toStartOf="@+id/textView_rating"
+        app:layout_constraintTop_toBottomOf="@+id/textView_rating" />
+
     <android.widget.Button
         android:id="@+id/btnCreateTask"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/round_teal"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
@@ -126,8 +149,9 @@
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/time_picker" />
+        app:layout_constraintTop_toBottomOf="@+id/rating_bar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
