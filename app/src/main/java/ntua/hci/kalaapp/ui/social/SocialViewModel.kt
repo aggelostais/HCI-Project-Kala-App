@@ -8,7 +8,7 @@ import ntua.hci.kalaapp.R
 class SocialViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is Social Fragment"
+        value = "Σελίδα κοινωνικών δικτύων"
     }
     val text: LiveData<String> = _text
 }

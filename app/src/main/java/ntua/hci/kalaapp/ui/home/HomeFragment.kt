@@ -1,6 +1,7 @@
 package ntua.hci.kalaapp.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.firebase.database.FirebaseDatabase
 import ntua.hci.kalaapp.R
 
 class HomeFragment : Fragment() {
@@ -27,15 +29,60 @@ class HomeFragment : Fragment() {
     ): View? {
         homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
 
         root.findViewById<TextView>(R.id.title_text).text = getString(R.string.title_home)
 
+        layoutList = root.findViewById(R.id.layout_list)
+        buttonAdd = root.findViewById(R.id.btnAddTask)
+
         categoryList.add("Κατηγορία A")
         categoryList.add("Κατηγορία B")
+
+        var database = FirebaseDatabase.getInstance()
+        var myRef = database.getReference("Tasks")
+
+        myRef.get().addOnSuccessListener {
+//            Log.i("firebase", "Got value ${it.value}")
+//            Log.i("firebase", "Length = ${it.childrenCount}")
+            var tasksFound = it.children
+            tasksFound.forEach{ element ->
+                var name = element.child("name").value.toString()
+                println(name)
+                var rating : Float = element.child("rating").value.toString().toFloat()
+                var time : String = element.child("time").value.toString()
+                var category : String = element.child("category").value.toString()
+                var key : String = element.child("key").value.toString()
+
+                var taskView = layoutInflater.inflate(R.layout.task_layout, null, false)
+
+                //setup fields
+                taskView.findViewById<TextView>(R.id.task_name).text = name
+                taskView.findViewById<RatingBar>(R.id.TaskRating).rating = rating
+                taskView.findViewById<TextView>(R.id.time_label).text = time
+                taskView.findViewById<TextView>(R.id.category_name).text = category
+
+                var imageClose = taskView.findViewById<ImageView>(R.id.image_remove)
+
+                imageClose.setOnClickListener{
+                    layoutList.removeView(taskView)
+
+                    FirebaseDatabase.getInstance().getReference("Tasks").child(key).removeValue()
+                }
+
+                taskView.findViewById<ImageView>(R.id.image_complete).setOnClickListener {
+                    layoutList.removeView(taskView)
+
+                    FirebaseDatabase.getInstance().getReference("Tasks").child(key).removeValue()
+                }
+
+                layoutList.addView(taskView)
+
+            }
+
+        }.addOnFailureListener{
+            Log.e("firebase", "Error getting data", it)
+        }
+
         return root
     }
 
@@ -49,24 +96,6 @@ class HomeFragment : Fragment() {
         view.findViewById<Button>(R.id.btnStarred).setOnClickListener {
             findNavController().navigate(R.id.action_navigation_home_to_starredFragment)
         }
-
-        layoutList = requireView().findViewById(R.id.layout_list)
-        buttonAdd = requireView().findViewById(R.id.btnAddTask)
-
-        var taskView = layoutInflater.inflate(R.layout.task_layout, null, false)
-
-        var task_rating = taskView.findViewById<RatingBar>(R.id.TaskRating)
-        task_rating.numStars = 5
-        task_rating.rating = 2.0F
-
-        var imageClose = taskView.findViewById<ImageView>(R.id.image_remove)
-
-        imageClose.setOnClickListener{
-            layoutList.removeView(taskView)
-        }
-
-        layoutList.addView(taskView)
-
 
 //        buttonAdd.setOnClickListener{
 //            var taskView = layoutInflater.inflate(R.layout.add_task_layout, null, false)

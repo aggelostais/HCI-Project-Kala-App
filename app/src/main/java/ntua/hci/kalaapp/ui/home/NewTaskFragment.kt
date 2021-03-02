@@ -114,34 +114,35 @@ class NewTaskFragment : Fragment() {
 
             var rating  = ratingBar.rating
 
-            println(name)
-            println(category)
-
+            println("name = $name")
+            println("category = $category")
+            println("mDate = $mDate")
+            println("mMonth = $mMonth")
+            println("mYear = $mYear")
+            println("mHour = $mHour")
+            println("mMinute = $mMinute")
             println("rating = $rating")
 
-            println(mDate)
-            println(mMonth)
-            println(mYear)
+            if( ! name.isNullOrEmpty() && mDate > 0 && mMonth > 0 && mYear > 0){
+                var date = "$mDate-$mMonth-$mYear"
+                var hourtxt :String = if(mHour < 10) "0$mHour" else "$mHour"
+                var minutetxt : String = if(mMinute < 10) "0$mMinute" else "$mMinute"
 
-            var date = "$mDate-$mMonth-$mYear"
-            var time = timeText.text.toString()
+                // Format time
+                var time = "$hourtxt:$minutetxt"
 
-            println(mHour)
-            println(mMinute)
+                var database = FirebaseDatabase.getInstance()
+                var myRef = database.getReference("Tasks")
 
-            var task = Task(name, category, date, time, rating)
+                //get the key that will be used
+                var key : String = myRef.push().key.toString()
 
-            var database = FirebaseDatabase.getInstance()
-            var myRef = database.getReference("Tasks")
+                var task = Task(name, category, date, time, rating, key)
 
-            myRef.get().addOnSuccessListener {
-                Log.i("firebase", "Got value ${it.value}")
-                Log.i("firebase", "Length = ${it.childrenCount}")
-            }.addOnFailureListener{
-                Log.e("firebase", "Error getting data", it)
+                myRef.child(key).setValue(task)
+
+                findNavController().navigate(R.id.action_newTaskFragment_to_navigation_home)
             }
-
-//            myRef.push().setValue(task)
         }
     }
 }
