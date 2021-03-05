@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import ntua.hci.kalaapp.R
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.log
 
@@ -29,7 +30,7 @@ class NewTaskFragment : Fragment() {
     private var mDate = 0
     private var mMonth = 0
     private var mYear = 0
-    private var mHour = 0
+    private var mHour = 12
     private var mMinute = 0
 
     private lateinit var name : String
@@ -78,11 +79,11 @@ class NewTaskFragment : Fragment() {
 
             val dpd = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
                 mYear = year
-                mMonth = monthOfYear
+                mMonth = monthOfYear + 1
                 mDate = dayOfMonth
 
                 // Display Selected date in TextView
-                dateText.text = "$dayOfMonth-$monthOfYear-$year"
+                dateText.text = "$dayOfMonth-$mMonth-$year"
 
             }, mYear, mMonth, mDate)
             dpd.show()
@@ -123,10 +124,20 @@ class NewTaskFragment : Fragment() {
             println("mMinute = $mMinute")
             println("rating = $rating")
 
-            if( ! name.isNullOrEmpty() && mDate > 0 && mMonth > 0 && mYear > 0){
+//                    && mDate > 0 && mMonth > 0 && mYear > 0
+            if( ! name.isNullOrEmpty() ){
                 var date = "$mDate-$mMonth-$mYear"
                 var hourtxt :String = if(mHour < 10) "0$mHour" else "$mHour"
                 var minutetxt : String = if(mMinute < 10) "0$mMinute" else "$mMinute"
+
+                if(!(mDate > 0 && mMonth > 0 && mYear > 0)) {
+                    val c = Calendar.getInstance()
+
+                    val year = c.get(Calendar.YEAR)
+                    val month = c.get(Calendar.MONTH) + 1
+                    val day = c.get(Calendar.DAY_OF_MONTH)
+                    date = "$day-$month-$year"
+                }
 
                 // Format time
                 var time = "$hourtxt:$minutetxt"

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.database.FirebaseDatabase
 import ntua.hci.kalaapp.R
+import java.lang.Integer.min
 
 class HomeFragment : Fragment() {
 
@@ -52,14 +53,25 @@ class HomeFragment : Fragment() {
                 var time : String = element.child("time").value.toString()
                 var category : String = element.child("category").value.toString()
                 var key : String = element.child("key").value.toString()
+                var date : String = element.child("date").value.toString()
 
                 var taskView = layoutInflater.inflate(R.layout.task_layout, null, false)
 
                 //setup fields
-                taskView.findViewById<TextView>(R.id.task_name).text = name
+                var task_name = taskView.findViewById<TextView>(R.id.task_name)
+                task_name.text = name
                 taskView.findViewById<RatingBar>(R.id.TaskRating).rating = rating
                 taskView.findViewById<TextView>(R.id.time_label).text = time
+                taskView.findViewById<TextView>(R.id.date_label).text = date
                 taskView.findViewById<TextView>(R.id.category_name).text = category
+
+                if(name.length > 11){
+                    task_name.textSize = 20F
+                    var max = 20
+                    if(name.length < 20) max = name.length
+                    task_name.text = name.subSequence(0, max)
+                    task_name.setPadding(8, 20,0,0)
+                }
 
                 var imageClose = taskView.findViewById<ImageView>(R.id.image_remove)
 
